@@ -25,3 +25,14 @@ export const userValidation = {
         .or('id', 'name', 'email', 'phone', 'id_number')
 };
 
+export const existancialValidation = {
+    body: Joi.object({
+        id_type: Joi.number(),
+        id_number: Joi.string().alphanum(),
+        email: Joi.string().email(),
+        phone: Joi.string().regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/),
+    })
+    .with ('id_number', 'id_type')
+    .with('id_type', 'id_number')
+    .or ('id_number', 'email', 'phone')
+};

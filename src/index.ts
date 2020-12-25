@@ -8,7 +8,9 @@ import { User } from "./entity/User";
 import { Device } from "./entity/Device";
 
 import { validate, ValidationError } from "express-validation";
-import { registrationValidation, userValidation } from "./schema/userValidators";
+import { registrationValidation, userValidation, existancialValidation } from "./schema/userValidators";
+
+import * as cors from "cors";
 
 // establish typeorm connection
 createConnection().then(async connection => {
@@ -18,7 +20,10 @@ createConnection().then(async connection => {
 
     // initiate express app
     const app = express();
+
+    app.use(cors({origin:true,credentials: true}));
     app.use(express.json());
+
     const port: Number = Number(process.env.PORT) || 3000;
 
     app.post('/user', validate(registrationValidation, {}), async (req: Request, res: Response) => {
@@ -40,19 +45,37 @@ createConnection().then(async connection => {
         }
     });
 
-    app.get('/user', validate(userValidation, {}),async (req: Request, res: Response) => {
+    app.get('/user', validate(userValidation, {}), async (req: Request, res: Response) => {
         console.log(req.body);
         const user = await userRepository.find(req.body)
-        if (user.length > 0){
+        if (user.length > 0) {
             res.status(200).json(user);
         }
-        else{
+        else {
             res.sendStatus(404)
         }
-        
+
     });
 
+    app.post('/validate', validate(existancialValidation, {}),
+        async (req: Request, res: Response) => {
+            console.log(req.body);
+            const user = await userRepository.find(req.body)
+            if (user.length > 0) {
+                res.status(400).json("Parameter already exists");
+            }
+            else {
+                res.sendStatus(200)
+            }
+        });
+
     app.use(function (err, req, res, next) {
+        console.log(req.body);
+
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+
         if (err instanceof ValidationError) {
             return res.status(err.statusCode).json(err);
         }
