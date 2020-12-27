@@ -12,7 +12,7 @@ export const registrationValidation = {
 };
 
 export const userValidation = {
-    body: Joi.object({
+    query: Joi.object({
         id: Joi.number(),
         id_type: Joi.number(),
         id_number: Joi.string(),
