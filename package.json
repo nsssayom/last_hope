@@ -4,6 +4,7 @@
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
       "@types/cors": "^2.8.9",
+      "@types/jsonwebtoken": "^8.5.0",
       "@types/node": "^8.0.29",
       "nodemon": "^2.0.6",
       "ts-node": "3.3.0",
@@ -17,11 +18,14 @@
       "express-validation": "^3.0.6",
       "express-validator": "^6.8.1",
       "firebase": "^8.2.1",
+      "firebase-admin": "^9.4.2",
+      "helmet": "^4.3.1",
       "mysql": "^2.18.1",
+      "passport": "^0.4.1",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.29"
    },
    "scripts": {
-      "start": "ts-node-dev src/index.ts"
+      "start": "export GOOGLE_APPLICATION_CREDENTIALS=\"/home/ubuntu/dev/last_hope/keys/last-hope.json\" && ts-node-dev src/index.ts"
    }
 }

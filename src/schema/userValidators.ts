@@ -36,3 +36,9 @@ export const existancialValidation = {
     .with('id_type', 'id_number')
     .or ('id_number', 'email', 'phone')
 };
+
+export const loginValidation = {
+    query: Joi.object({
+        phone: Joi.string().regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/),
+    })
+};
