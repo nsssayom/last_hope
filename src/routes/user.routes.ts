@@ -9,8 +9,8 @@ export var userRouter = Router();
 userRouter.post("/", validate(registrationValidation, {}), async (req: Request, res: Response) => {
     const userRepository = getManager().getRepository(User);
     const newUser = new User();
-    newUser.id_type = req.body.id_type;
 
+    newUser.id_type = req.body.id_type;
     newUser.id_number = req.body.id_number;
     newUser.name = req.body.name;
     newUser.email = req.body.email;

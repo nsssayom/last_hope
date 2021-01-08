@@ -27,17 +27,20 @@ export class Device {
     @Index({ unique: true })
     gsm_msisdn: string;
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     hw_version: string;
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     sw_version: string;
 
-    @Column()
+    @Column('timestamp', { nullable: false, default: () => 'CURRENT_TIMESTAMP'})
     assigned_on: Date;
 
-    @Column()
+    @Column({default:() => true})
     is_active: Boolean;
+
+    @Column()
+    area_code: Number;
 
     @ManyToOne(()=> User, user => user.devices)
     user: User
