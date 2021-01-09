@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { validate } from "express-validation";
 import { getManager } from 'typeorm'
 
 import { Warning } from "../entity/Warning";

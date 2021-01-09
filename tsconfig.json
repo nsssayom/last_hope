@@ -12,6 +12,7 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "resolveJsonModule": true
+      "resolveJsonModule": true,
+      "esModuleInterop": true
    }
 }
