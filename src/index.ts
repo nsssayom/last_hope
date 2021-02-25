@@ -77,7 +77,7 @@ createConnection()
 
 		const startServer = async () => {
 			await http_server.listen(port, () => {
-				console.log(`Server running on http://localhost:${port}`);
+				console.log(`Server running on http://localhost:${port}`);  
 			});
 		};
 		
