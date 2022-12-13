@@ -16,7 +16,7 @@
       "@types/socket.io": "^2.1.12",
       "@types/socket.io-client": "^1.4.34",
       "cors": "^2.8.5",
-      "express": "^4.17.1",
+      "express": "^4.17.3",
       "express-validation": "^3.0.6",
       "express-validator": "^6.8.1",
       "firebase": "^8.2.1",
